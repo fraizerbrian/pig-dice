@@ -1,6 +1,6 @@
 $().ready(function(){
     $("button#start").click(function(event){
-        player1 = new Player(false);
+        player1 = new Player(true);
         player2 = new Player(false);
         $(".game-mode").show();
         $(".start-menu").hide();
@@ -14,7 +14,7 @@ $().ready(function(){
         player1.playerName=player1Name;
         player2.playerName=player2Name;
     });
-    $("#new-game").click(function(event){
+    $("button#new-game").click(function(event){
         $(".game-mode").hide();
         clearValues();
         player1.newGame();
@@ -29,7 +29,7 @@ $().ready(function(){
         $(".start-menu").show();
     });
 
-    $("#player1-roll").click(function(event){
+    $("button#player1-roll").click(function(event){
         player1.roll = throwdice();
         $("#die-roll-1").text(player1.roll);
         player1.rollone();
@@ -42,15 +42,15 @@ $().ready(function(){
         $("#round-total-2").text(player2.tempscore);
     });
     
-    $("#player1-pass").click(function(event){
-        player1.hold();
+    $("button#player1-pass").click(function(event){
+        player1.pass();
         $("#total-score-1").text(player1.totalscore);
         $("#round-total-1").empty();
         $("#die-roll-1").empty();
         player1.winnerCheck();
     });
-    $("#player2-pass").click(function(event){
-        player1.hold();
+    $("button#player2-pass").click(function(event){
+        player2.pass();
         $("#total-score-2").text(player2.totalscore);
         $("#round-total-2").empty();
         $("#die-roll-2").empty();
@@ -75,7 +75,7 @@ function Player(turn){
 }
 
 Player.prototype.rollone=function(){
-    if (this.roll ===1){
+    if (this.roll === 1){
         this.tempscore = 0;
         alert("Ooooppsss!" + this.playerName +", you rolled a 1!! Your Turn Is Over!")
     } 
@@ -88,8 +88,8 @@ Player.prototype.pass= function(){
     this.tempscore = 0;
     alert(this.playerName +",your turn is over, pass the mouse!");
 }
-Player.prototype.newGame =function(){
-    if(this.totalscore = 100){
+Player.prototype.winnerCheck =function(){
+    if(this.totalscore >= 100){
         alert(this.playerName + "You are the Winner!!!");
     }
 }
@@ -98,4 +98,8 @@ Player.prototype.newGame = function(){
     this.tempscore=0;
     this.totalscore=0;
     this.playerName ="";
+}
+var clearValues = function(){
+    $(".player1Name").val("");
+    $(".player2Name").val("");
 }
