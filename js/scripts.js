@@ -103,3 +103,17 @@ var clearValues = function(){
     $(".player1Name").val("");
     $(".player2Name").val("");
 }
+
+var foo;
+var bar;
+var totalscore;
+
+initialize(firstTime){
+    foo=42; bar=17;
+    if (firstTime){totalscore = 0;    }
+}
+onGameover()
+{
+   if(current score > totalscore)  {  totalscore = current score;  }
+   if(person presses enter)  {  initialize();  }  //don't actually check for keypress in this function
+}
